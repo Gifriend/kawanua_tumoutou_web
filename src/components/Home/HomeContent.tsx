@@ -4,7 +4,7 @@ import Image from "next/image"
 const HeroContent: React.FC = () => (
   <div className="relative z-10 h-screen flex items-center justify-center px-4">
     <Image
-      src="/placeholder.svg?height=1080&width=1920"
+      src="/derawan.png?height=1080&width=1920"
       alt="Pulau Derawan"
       fill
       className="absolute inset-0 -z-10 object-cover"
