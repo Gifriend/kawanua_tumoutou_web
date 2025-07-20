@@ -62,52 +62,54 @@ const WeatherStats: React.FC<WeatherStatsProps> = ({ data }) => {
   const avgHumidity = data.hourlyForecast.reduce((sum, hour) => sum + hour.humidity, 0) / data.hourlyForecast.length
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
       {/* Comfort Index */}
       <Card className="bg-white/10 backdrop-blur-md border-white/20 text-white">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-lg">
-            <Thermometer className="w-5 h-5 text-cyan-400" />
-            Comfort Index
+        <CardHeader className="pb-2 md:pb-4">
+          <CardTitle className="flex items-center gap-2 text-base md:text-lg">
+            <Thermometer className="w-4 h-4 md:w-5 md:h-5 text-cyan-400" />
+            <span className="text-sm md:text-base">Comfort Index</span>
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-3 md:space-y-4 p-3 md:p-6">
           <div className="flex items-center justify-between">
-            <span>Current Level</span>
-            <Badge className={`${comfortLevel.color} bg-transparent border-current`}>{comfortLevel.level}</Badge>
+            <span className="text-xs md:text-sm">Current Level</span>
+            <Badge className={`${comfortLevel.color} bg-transparent border-current text-xs`}>
+              {comfortLevel.level}
+            </Badge>
           </div>
           <div className="space-y-2">
-            <div className="flex justify-between text-sm">
+            <div className="flex justify-between text-xs md:text-sm">
               <span>Temperature</span>
               <span>{Math.round(data.temperature)}°C</span>
             </div>
-            <Progress value={(data.temperature / 40) * 100} className="h-2" />
+            <Progress value={(data.temperature / 40) * 100} className="h-1.5 md:h-2" />
           </div>
           <div className="space-y-2">
-            <div className="flex justify-between text-sm">
+            <div className="flex justify-between text-xs md:text-sm">
               <span>Feels Like</span>
               <span>{Math.round(data.feelsLike)}°C</span>
             </div>
-            <Progress value={(data.feelsLike / 40) * 100} className="h-2" />
+            <Progress value={(data.feelsLike / 40) * 100} className="h-1.5 md:h-2" />
           </div>
         </CardContent>
       </Card>
 
       {/* UV Index */}
       <Card className="bg-white/10 backdrop-blur-md border-white/20 text-white">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-lg">
-            <Sun className="w-5 h-5 text-yellow-400" />
-            UV Index
+        <CardHeader className="pb-2 md:pb-4">
+          <CardTitle className="flex items-center gap-2 text-base md:text-lg">
+            <Sun className="w-4 h-4 md:w-5 md:h-5 text-yellow-400" />
+            <span className="text-sm md:text-base">UV Index</span>
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-3 md:space-y-4 p-3 md:p-6">
           <div className="text-center">
-            <div className="text-3xl font-bold mb-2">{data.uvIndex}</div>
-            <Badge className={`${uvLevel.textColor} bg-transparent border-current`}>{uvLevel.level}</Badge>
+            <div className="text-2xl md:text-3xl font-bold mb-2">{data.uvIndex}</div>
+            <Badge className={`${uvLevel.textColor} bg-transparent border-current text-xs`}>{uvLevel.level}</Badge>
           </div>
-          <Progress value={(data.uvIndex / 11) * 100} className="h-3" />
-          <div className="text-sm text-blue-200">
+          <Progress value={(data.uvIndex / 11) * 100} className="h-2 md:h-3" />
+          <div className="text-xs md:text-sm text-blue-200">
             {data.uvIndex <= 2 && "Minimal protection required"}
             {data.uvIndex > 2 && data.uvIndex <= 5 && "Moderate protection recommended"}
             {data.uvIndex > 5 && data.uvIndex <= 7 && "Protection essential"}
@@ -118,43 +120,43 @@ const WeatherStats: React.FC<WeatherStatsProps> = ({ data }) => {
 
       {/* Air Quality */}
       <Card className="bg-white/10 backdrop-blur-md border-white/20 text-white">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-lg">
-            <Eye className="w-5 h-5 text-green-400" />
-            Visibility
+        <CardHeader className="pb-2 md:pb-4">
+          <CardTitle className="flex items-center gap-2 text-base md:text-lg">
+            <Eye className="w-4 h-4 md:w-5 md:h-5 text-green-400" />
+            <span className="text-sm md:text-base">Visibility</span>
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-3 md:space-y-4 p-3 md:p-6">
           <div className="text-center">
-            <div className="text-3xl font-bold mb-2">{data.visibility} km</div>
-            <Badge className="text-green-400 bg-transparent border-current">
+            <div className="text-2xl md:text-3xl font-bold mb-2">{data.visibility} km</div>
+            <Badge className="text-green-400 bg-transparent border-current text-xs">
               {data.visibility >= 10 ? "Excellent" : data.visibility >= 5 ? "Good" : "Poor"}
             </Badge>
           </div>
-          <Progress value={(data.visibility / 15) * 100} className="h-3" />
-          <div className="text-sm text-blue-200">Atmospheric visibility conditions</div>
+          <Progress value={(data.visibility / 15) * 100} className="h-2 md:h-3" />
+          <div className="text-xs md:text-sm text-blue-200">Atmospheric visibility conditions</div>
         </CardContent>
       </Card>
 
       {/* Wind Analysis */}
       <Card className="bg-white/10 backdrop-blur-md border-white/20 text-white">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-lg">
-            <Wind className="w-5 h-5 text-cyan-400" />
-            Wind Analysis
+        <CardHeader className="pb-2 md:pb-4">
+          <CardTitle className="flex items-center gap-2 text-base md:text-lg">
+            <Wind className="w-4 h-4 md:w-5 md:h-5 text-cyan-400" />
+            <span className="text-sm md:text-base">Wind Analysis</span>
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-3 md:space-y-4 p-3 md:p-6">
           <div className="flex items-center justify-between">
-            <span>Wind Speed</span>
-            <span className="font-bold">{data.windSpeed} km/h</span>
+            <span className="text-xs md:text-sm">Wind Speed</span>
+            <span className="font-bold text-sm md:text-base">{data.windSpeed} km/h</span>
           </div>
           <div className="flex items-center justify-between">
-            <span>Condition</span>
-            <Badge className={`${windLevel.color} bg-transparent border-current`}>{windLevel.level}</Badge>
+            <span className="text-xs md:text-sm">Condition</span>
+            <Badge className={`${windLevel.color} bg-transparent border-current text-xs`}>{windLevel.level}</Badge>
           </div>
-          <Progress value={(data.windSpeed / 50) * 100} className="h-2" />
-          <div className="text-sm text-blue-200">
+          <Progress value={(data.windSpeed / 50) * 100} className="h-1.5 md:h-2" />
+          <div className="text-xs md:text-sm text-blue-200">
             {windLevel.level === "Calm" && "Perfect for outdoor activities"}
             {windLevel.level === "Light Breeze" && "Pleasant conditions"}
             {windLevel.level === "Moderate Breeze" && "Good for sailing"}
@@ -166,23 +168,23 @@ const WeatherStats: React.FC<WeatherStatsProps> = ({ data }) => {
 
       {/* Humidity Details */}
       <Card className="bg-white/10 backdrop-blur-md border-white/20 text-white">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-lg">
-            <Droplets className="w-5 h-5 text-blue-400" />
-            Humidity Analysis
+        <CardHeader className="pb-2 md:pb-4">
+          <CardTitle className="flex items-center gap-2 text-base md:text-lg">
+            <Droplets className="w-4 h-4 md:w-5 md:h-5 text-blue-400" />
+            <span className="text-sm md:text-base">Humidity Analysis</span>
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-3 md:space-y-4 p-3 md:p-6">
           <div className="flex items-center justify-between">
-            <span>Current</span>
-            <span className="font-bold">{data.humidity}%</span>
+            <span className="text-xs md:text-sm">Current</span>
+            <span className="font-bold text-sm md:text-base">{data.humidity}%</span>
           </div>
           <div className="flex items-center justify-between">
-            <span>24h Average</span>
-            <span className="font-bold">{Math.round(avgHumidity)}%</span>
+            <span className="text-xs md:text-sm">24h Average</span>
+            <span className="font-bold text-sm md:text-base">{Math.round(avgHumidity)}%</span>
           </div>
-          <Progress value={data.humidity} className="h-2" />
-          <div className="text-sm text-blue-200">
+          <Progress value={data.humidity} className="h-1.5 md:h-2" />
+          <div className="text-xs md:text-sm text-blue-200">
             {data.humidity < 30 && "Very dry conditions"}
             {data.humidity >= 30 && data.humidity < 60 && "Comfortable humidity"}
             {data.humidity >= 60 && data.humidity < 80 && "Slightly humid"}
@@ -193,28 +195,30 @@ const WeatherStats: React.FC<WeatherStatsProps> = ({ data }) => {
 
       {/* Temperature Statistics */}
       <Card className="bg-white/10 backdrop-blur-md border-white/20 text-white">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-lg">
-            <TrendingUp className="w-5 h-5 text-orange-400" />
-            Temperature Stats
+        <CardHeader className="pb-2 md:pb-4">
+          <CardTitle className="flex items-center gap-2 text-base md:text-lg">
+            <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-orange-400" />
+            <span className="text-sm md:text-base">Temperature Stats</span>
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+        <CardContent className="space-y-3 md:space-y-4 p-3 md:p-6">
+          <div className="grid grid-cols-2 gap-3 md:gap-4">
             <div className="text-center">
-              <div className="text-sm text-blue-300">24h High</div>
-              <div className="text-xl font-bold text-red-400">{Math.round(maxTemp)}°C</div>
+              <div className="text-xs md:text-sm text-blue-300">24h High</div>
+              <div className="text-lg md:text-xl font-bold text-red-400">{Math.round(maxTemp)}°C</div>
             </div>
             <div className="text-center">
-              <div className="text-sm text-blue-300">24h Low</div>
-              <div className="text-xl font-bold text-blue-400">{Math.round(minTemp)}°C</div>
+              <div className="text-xs md:text-sm text-blue-300">24h Low</div>
+              <div className="text-lg md:text-xl font-bold text-blue-400">{Math.round(minTemp)}°C</div>
             </div>
           </div>
           <div className="text-center">
-            <div className="text-sm text-blue-300">24h Average</div>
-            <div className="text-2xl font-bold">{Math.round(avgTemp)}°C</div>
+            <div className="text-xs md:text-sm text-blue-300">24h Average</div>
+            <div className="text-xl md:text-2xl font-bold">{Math.round(avgTemp)}°C</div>
           </div>
-          <div className="text-sm text-blue-200 text-center">Temperature range: {Math.round(maxTemp - minTemp)}°C</div>
+          <div className="text-xs md:text-sm text-blue-200 text-center">
+            Temperature range: {Math.round(maxTemp - minTemp)}°C
+          </div>
         </CardContent>
       </Card>
     </div>

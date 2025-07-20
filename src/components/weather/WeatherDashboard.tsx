@@ -407,20 +407,20 @@ const WeatherDashboard: React.FC = () => {
             >
               <Tabs defaultValue="forecast" className="w-full">
                 <TabsList className="grid w-full grid-cols-5 bg-white/10 backdrop-blur-md">
-                  <TabsTrigger value="forecast" className="data-[state=active]:bg-cyan-500">
-                    Prakiraan 5 Hari
+                  <TabsTrigger value="forecast" className="data-[state=active]:bg-cyan-500 text-sm sm:text-md">
+                    <p className="text-xs sm:text-sm">5 hari</p>
                   </TabsTrigger>
                   <TabsTrigger value="hourly" className="data-[state=active]:bg-cyan-500">
-                    Grafik 24 Jam
+                    <p className="text-xs sm:text-sm">24 jam</p>
                   </TabsTrigger>
                   <TabsTrigger value="statistics" className="data-[state=active]:bg-cyan-500">
-                    Statistik
+                    <p className="text-xs sm:text-sm">Statistik</p>
                   </TabsTrigger>
                   <TabsTrigger value="trends" className="data-[state=active]:bg-cyan-500">
-                    Tren
+                    <p className="text-xs sm:text-sm">Tren</p>
                   </TabsTrigger>
                   <TabsTrigger value="map" className="data-[state=active]:bg-cyan-500">
-                    Peta
+                    <p className="text-xs sm:text-sm">Peta</p>
                   </TabsTrigger>
                 </TabsList>
 
