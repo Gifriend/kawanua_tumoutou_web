@@ -72,8 +72,8 @@ const WeatherDashboard: React.FC = () => {
     console.log("Fetching weather directly from OpenWeatherMap API...")
 
     // Fixed coordinates for Derawan Islands
-    const DERAWAN_LAT = 2.2368796
-    const DERAWAN_LON = 118.4278129
+    const DERAWAN_LAT = 2.2833
+    const DERAWAN_LON = 118.2410
     const API_KEY = process.env.NEXT_PUBLIC_OPENWEATHERMAP_API_KEY
 
     if (!API_KEY) {
@@ -190,8 +190,8 @@ const WeatherDashboard: React.FC = () => {
         uvIndex: 8,
         icon: "partly-cloudy",
         coordinates: {
-          lat: 2.2368796,
-          lon: 118.4278129,
+          lat: 2.2833,
+          lon: 118.2410,
         },
         forecast: [
           { date: "Hari ini", high: 31, low: 26, description: "cerah", icon: "sunny", humidity: 75, windSpeed: 12.5 },

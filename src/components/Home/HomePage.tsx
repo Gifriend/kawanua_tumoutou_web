@@ -2,6 +2,7 @@
 import React from "react"
 import HeroContent from "./HomeContent"
 import WeatherDashboard from "../../components/weather/WeatherDashboard"
+import WorkPage from "../work-program/WorkPage"
 
 const Home: React.FC = () => {
   return (
@@ -32,6 +33,7 @@ const Home: React.FC = () => {
         {/* Main content */}
         <HeroContent />
         <WeatherDashboard />
+        <WorkPage />
       </div>
     </>
   )

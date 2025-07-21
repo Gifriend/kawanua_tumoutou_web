@@ -2,7 +2,7 @@ import type React from 'react';
 import Image from 'next/image';
 
 const HeroContent: React.FC = () => (
-  <div className="relative z-10 h-screen flex items-center justify-center px-4">
+  <div className="relative z-10 h-screen flex items-center justify-center px-4 bg-[">
     <Image
       src="/Derawan.jpeg?height=1080&width=1920"
       alt="Pulau Derawan"
