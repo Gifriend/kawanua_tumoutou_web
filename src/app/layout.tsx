@@ -15,6 +15,21 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Kawanua Tumou Tou",
   description: "Kawanua Tumou Tou Web for Derawan village",
+  icons: {
+    icon: "/logo-tim.jpg",
+    other: [
+      {
+        rel: "icon",
+        url: "/logo-tim.jpg",
+        sizes: "32x32",
+      },
+      {
+        rel: "icon",
+        url: "/logo-tim.jpg",
+        sizes: "16x16",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
