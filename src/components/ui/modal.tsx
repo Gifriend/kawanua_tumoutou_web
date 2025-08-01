@@ -5,7 +5,7 @@ interface ModalProps {
   onClose: () => void;
   title?: string;
   description?: string;
-  children?: React.ReactNode; // ✅ Tambahkan children
+  children?: React.ReactNode; 
 }
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, description, children }) => {
