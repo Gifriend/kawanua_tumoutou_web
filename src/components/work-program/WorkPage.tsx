@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ScrollReveal from '../ui/ScrollReveal/ScrollReveal';
 import TiltedCard from '../ui/TiltedCard';
 import Modal from '../ui/modal';
-// import Image from 'next/image';
+import Image from 'next/image';
 
 const baktiPrograms = [
   {
@@ -20,8 +20,7 @@ const baktiPrograms = [
     description:
       'Bakti mengalir ini kami membuat filtrasi air yang bisa digunakan untuk mengalirkan air yang siap diminum untuk masyarakat maupun turis. Serta kami juga melakukan penyuluhan tentang sanitasi lingkungan',
     images: [
-      'https://blocks.astratic.com/img/general-img-square.png',
-      'https://blocks.astratic.com/img/general-img-square.png',
+      '/bakti-mengalir-cover.JPG',
     ],
   },
   {
@@ -141,11 +140,12 @@ const WorkPage: React.FC = () => {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {activeProgram.images.map((src, idx) => (
-                <img
+                <Image
                   key={idx}
                   src={src}
                   alt={`Foto ${idx + 1}`}
                   className="rounded shadow w-full h-48 object-cover"
+                  loading="lazy"
                 />
               ))}
             </div>

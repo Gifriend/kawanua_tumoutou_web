@@ -8,6 +8,7 @@ const HeroContent: React.FC = () => (
       alt="Pulau Derawan"
       fill
       className="absolute inset-0 -z-10 object-cover"
+      loading='lazy'
     />
     <div className="text-center max-w-4xl mx-auto">
       <h1 className="text-5xl md:text-6xl font-bold text-white drop-shadow-[2px_2px_0_black] mb-6 leading-tight animate-fade-in hover:scale-105 transition-transform duration-300">
