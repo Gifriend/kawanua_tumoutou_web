@@ -41,6 +41,32 @@ function getFontSize(font: string): number {
   return match ? parseInt(match[1], 10) : 30;
 }
 
+function wrapText(
+  context: CanvasRenderingContext2D,
+  text: string,
+  maxWidth: number
+): string[] {
+  const words = text.split(" ");
+  const lines: string[] = [];
+  let currentLine = words[0];
+
+  for (let i = 1; i < words.length; i++) {
+    const word = words[i];
+    const testLine = currentLine + " " + word;
+    const metrics = context.measureText(testLine);
+    
+    if (metrics.width <= maxWidth) {
+      currentLine = testLine;
+    } else {
+      lines.push(currentLine);
+      currentLine = word;
+    }
+  }
+  
+  lines.push(currentLine);
+  return lines;
+}
+
 function createTextTexture(
   gl: GL,
   text: string,
@@ -52,20 +78,29 @@ function createTextTexture(
   if (!context) throw new Error("Could not get 2d context");
 
   context.font = font;
-  const metrics = context.measureText(text);
-  const textWidth = Math.ceil(metrics.width);
   const fontSize = getFontSize(font);
-  const textHeight = Math.ceil(fontSize * 1.2);
+  const maxWidth = 400; 
+  const lineHeight = fontSize * 1.2;
 
-  canvas.width = textWidth + 20;
-  canvas.height = textHeight + 20;
+  const lines = wrapText(context, text, maxWidth);
+  
+  const lineWidths = lines.map(line => context.measureText(line).width);
+  const textWidth = Math.max(...lineWidths);
+  const textHeight = lines.length * lineHeight;
+
+  canvas.width = Math.ceil(textWidth + 20);
+  canvas.height = Math.ceil(textHeight + 20);
 
   context.font = font;
   context.fillStyle = color;
-  context.textBaseline = "middle";
+  context.textBaseline = "top";
   context.textAlign = "center";
   context.clearRect(0, 0, canvas.width, canvas.height);
-  context.fillText(text, canvas.width / 2, canvas.height / 2);
+
+  lines.forEach((line, i) => {
+    const yPosition = 10 + i * lineHeight;
+    context.fillText(line, canvas.width / 2, yPosition);
+  });
 
   const texture = new Texture(gl, { generateMipmaps: false });
   texture.image = canvas;
@@ -513,52 +548,20 @@ class App {
   ) {
     const defaultItems = [
       {
-        image: `https://picsum.photos/seed/1/800/600?grayscale`,
-        text: "Bridge",
+        image: `/penyu.jpg`,
+        text: "Snorkeling bersama penyu yang lucu",
       },
       {
-        image: `https://picsum.photos/seed/2/800/600?grayscale`,
-        text: "Desk Setup",
+        image: `/ubur-ubur.jpg`,
+        text: "Snorkeling bersama ubur-ubur tanpa sengat",
       },
       {
-        image: `https://picsum.photos/seed/3/800/600?grayscale`,
-        text: "Waterfall",
+        image: `/hiupaus.jpg`,
+        text: "Snorkeling bersama hiu paus",
       },
       {
-        image: `https://picsum.photos/seed/4/800/600?grayscale`,
-        text: "Strawberries",
-      },
-      {
-        image: `https://picsum.photos/seed/5/800/600?grayscale`,
-        text: "Deep Diving",
-      },
-      {
-        image: `https://picsum.photos/seed/16/800/600?grayscale`,
-        text: "Train Track",
-      },
-      {
-        image: `https://picsum.photos/seed/17/800/600?grayscale`,
-        text: "Santorini",
-      },
-      {
-        image: `https://picsum.photos/seed/8/800/600?grayscale`,
-        text: "Blurry Lights",
-      },
-      {
-        image: `https://picsum.photos/seed/9/800/600?grayscale`,
-        text: "New York",
-      },
-      {
-        image: `https://picsum.photos/seed/10/800/600?grayscale`,
-        text: "Good Boy",
-      },
-      {
-        image: `https://picsum.photos/seed/21/800/600?grayscale`,
-        text: "Coastline",
-      },
-      {
-        image: `https://picsum.photos/seed/12/800/600?grayscale`,
-        text: "Palm Trees",
+        image: `/sunset.jpg`,
+        text: "Menikmati sunset yang indah",
       },
     ];
     const galleryItems = items && items.length ? items : defaultItems;
